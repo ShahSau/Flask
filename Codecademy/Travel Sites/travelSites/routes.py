@@ -3,7 +3,8 @@ from flask import request, render_template, flash, redirect,url_for
 from models import User, Post
 from forms import RegistrationForm,LoginForm, DestinationForm
 from werkzeug.urls import url_parse
-
+from flask_login import current_user, login_user, logout_user, login_required
+from app import db
   
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -51,7 +52,7 @@ def user(username):
 		db.session.commit()
 	else:
 		flash(form.errors)
-		unpopular_songs = Song.query.order_by(Song.n).all()[:3]
+		#unpopular_songs = Song.query.order_by(Song.n).all()[:3]
 	destinations = Destination.query.all()
 	return render_template('user.html', user=user, posts=posts, form=form)
 @app.route('/logout')
