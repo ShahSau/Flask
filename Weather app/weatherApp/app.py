@@ -1,5 +1,5 @@
 import requests
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 
 from flask_sqlalchemy import SQLAlchemy
 
@@ -18,15 +18,8 @@ class City(db.Model):
     name = db.Column(db.String(50), nullable =False)
 
 
-@app.route('/', methods=['GET', 'POST'])
-def index():
-    if request.method == 'POST':
-        new_city = request.form.get('city')
-        if new_city:
-            new_city_obj = City(name = new_city)
-
-            db.session.add(new_city_obj)
-            db.session.commit()
+@app.route('/')
+def index_get():
 
     cities = City.query.all()
     url= 'http://api.openweathermap.org/data/2.5/weather?q={}&units=metric&appid=4c65edd7a717e23ee614acd543adccec'
@@ -50,4 +43,23 @@ def index():
         }
         weather_data.append(weather)
    
-    return render_template("index.html", weather_data = weather_data)
+    return render_template("index.html", weather_data = weather_data, new_data=weather_data[-1])
+
+
+
+
+
+
+
+
+@app.route('/', methods=['GET', 'POST'])
+def index_post():
+    new_city = request.form.get('city')
+    if new_city:
+        new_city_obj = City(name = new_city)
+
+        db.session.add(new_city_obj)
+        db.session.commit()
+
+    
+    return render_template(url_for('index_get'))

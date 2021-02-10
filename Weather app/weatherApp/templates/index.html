@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css" />-->
     <link
       rel="stylesheet"
-      href="{{ url_for('static', filename='main2.css') }}"
+      href="{{ url_for('static', filename='style.css') }}"
     />
    
   </head>
@@ -53,6 +53,39 @@
         <div class="container">
             <div class="columns">
                 <div class="column is-offset-4 is-4">
+<!-- ************-->
+<div class="box">
+  <article class="media">
+      <div class="media-left">
+          <figure class="image is-50x50">
+              <img src="http://openweathermap.org/img/w/{{ new_data.icon }}.png" alt="Image">
+          </figure>
+      </div>
+      <div class="media-content">
+          <div class="content">
+              <p>
+                  <span class="title">{{ new_data.city }}</span>
+                  <br>
+                  <span class="subtitle">{{ new_data.temperature }}° C </span>
+                  <br> {{ new_data.description }}
+                  <br> {{ new_data.High }}
+                  <br> {{ new_data.Low }}
+                  <br> {{ new_data.humidity }}
+                  <br> {{ new_data.feels_like }}
+                  <br> {{ new_data.wind_speed }}
+                  <br> {{ new_data.pressure }}
+
+              </p>
+          </div>
+      </div>
+  </article>
+</div>
+<!-- ************-->
+
+
+
+
+                  <h1>Earlier Search Result</h1>
                   {% for weather in weather_data %}
                     <div class="box">
                         <article class="media">
