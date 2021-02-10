@@ -66,12 +66,12 @@
               <p>
                   <span class="title">{{ new_data.city }}</span>
                   <br>
-                  <span class="subtitle">{{ new_data.temperature }}° C </span>
+                  <span class="subtitle">{{ new_data.temperature|round }}° C </span>
                   <br> {{ new_data.description }}
-                  <br> {{ new_data.High }}
-                  <br> {{ new_data.Low }}
+                  <br> {{ new_data.High |round}}
+                  <br> {{ new_data.Low |round}}
                   <br> {{ new_data.humidity }}
-                  <br> {{ new_data.feels_like }}
+                  <br> {{ new_data.feels_like |round }}
                   <br> {{ new_data.wind_speed }}
                   <br> {{ new_data.pressure }}
 
@@ -86,7 +86,7 @@
 
 
                   <h1>Earlier Search Result</h1>
-                  {% for weather in weather_data %}
+                  {% for weather in weather_data[:-1] %}
                     <div class="box">
                         <article class="media">
                             <div class="media-left">
@@ -99,12 +99,12 @@
                                     <p>
                                         <span class="title">{{ weather.city }}</span>
                                         <br>
-                                        <span class="subtitle">{{ weather.temperature }}° C </span>
+                                        <span class="subtitle">{{ weather.temperature|round }}° C </span>
                                         <br> {{ weather.description }}
-                                        <br> {{ weather.High }}
-                                        <br> {{ weather.Low }}
+                                        <br> {{ weather.High |round}}
+                                        <br> {{ weather.Low |round}}
                                         <br> {{ weather.humidity }}
-                                        <br> {{ weather.feels_like }}
+                                        <br> {{ weather.feels_like |round}}
                                         <br> {{ weather.wind_speed }}
                                         <br> {{ weather.pressure }}
 
