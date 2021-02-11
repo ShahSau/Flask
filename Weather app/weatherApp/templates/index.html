@@ -50,38 +50,29 @@
         </div>
       </section>
 
-      <section class="section">
+    <section class="section">
         <div class="container">
             <div class="columns">
                 <div class="column is-offset-4 is-4">
 <!-- ************-->
-                 <div class="box">
-                   <article class="media">
-                    <div class="media-left">
-                     <figure class="image is-50x50">
-                      <img src="http://openweathermap.org/img/w/{{ new_data.icon }}.png" alt="Image">
-                    </figure>
-                    </div>
-                    <div class="media-content">
-                     <div class="content">
-                     <p>
-                     <span class="title">{{ new_data.city }}</span>
-                     <br>
-                     <span class="subtitle">{{ new_data.temperature|round }}° C </span>
-                     <br> {{ new_data.description }}
-                     <br> {{ new_data.High |round}}
-                     <br> {{ new_data.Low |round}}
-                     <br> {{ new_data.humidity }}
-                     <br> {{ new_data.feels_like |round }}
-                     <br> {{ new_data.wind_speed }}
-                     <br> {{ new_data.pressure }}
+<div class="card" >
+  <img class="card-img-top" src="http://openweathermap.org/img/w/{{ new_data.icon }}.png" alt="Image">
+  <div class="card-body">
+      <h3 class="card-title">{{ new_data.city }}</h3>
+      <h5 class="card-subtitle">{{ new_data.temperature }}°C</h5>
+      <p class="card-text">{{ new_data.description }}</p>
+      <a class="card-link">H: {{ new_data.High }}</a>
+      <a class="card-link">L: {{ new_data.Low }}</a>
+  </div>
 
-                     </p>
-                    </div>
-                  </div>
-                  </article>
-               </div>
-              </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Humidity is: {{ new_data.humidity }}% </li>
+      <li class="list-group-item">Feels like: {{ new_data.feels_like }}°C</li>
+      <li class="list-group-item">Wind speed: {{ new_data.wind_speed }}m/s</li>
+      <li class="list-group-item">Pressure: {{ new_data.pressure }}hPa</li>
+    </ul>
+</div>
+          </div>
             </div>
         </div>
     </section>
@@ -99,32 +90,23 @@
       <div class="columns">
           <div class="column is-offset-4 is-4">
                   {% for weather in weather_data[:-1] %}
-                    <div class="box">
-                        <article class="media">
-                            <div class="media-left">
-                                <figure class="image is-50x50">
-                                    <img src="http://openweathermap.org/img/w/{{ weather.icon }}.png" alt="Image">
-                                </figure>
-                            </div>
-                            <div class="media-content">
-                                <div class="content">
-                                    <p>
-                                        <span class="title">{{ weather.city }}</span>
-                                        <br>
-                                        <span class="subtitle">{{ weather.temperature|round }}° C </span>
-                                        <br> {{ weather.description }}
-                                        <br> {{ weather.High |round}}
-                                        <br> {{ weather.Low |round}}
-                                        <br> {{ weather.humidity }}
-                                        <br> {{ weather.feels_like |round}}
-                                        <br> {{ weather.wind_speed }}
-                                        <br> {{ weather.pressure }}
-
-                                    </p>
-                                </div>
-                            </div>
-                        </article>
+                  <div class="card" >
+                    <img class="card-img-top" src="http://openweathermap.org/img/w/{{ weather.icon }}.png" alt="Image">
+                    <div class="card-body">
+                        <h3 class="card-title">{{ weather.city }}</h3>
+                        <h5 class="card-subtitle">{{ weather.temperature }}°C</h5>
+                        <p class="card-text">{{ weather.description }}</p>
+                        <a class="card-link">H: {{ weather.High }}</a>
+                        <a class="card-link">L: {{ weather.Low }}</a>
                     </div>
+                 
+                      <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Humidity is: {{ weather.humidity }}% </li>
+                        <li class="list-group-item">Feels like: {{ weather.feels_like }}°C</li>
+                        <li class="list-group-item">Wind speed: {{ weather.wind_speed }}m/s</li>
+                        <li class="list-group-item">Pressure: {{ weather.pressure }}hPa</li>
+                      </ul>
+                </div>
                   {% endfor %}
                 </div>
             </div>
