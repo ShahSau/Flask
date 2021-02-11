@@ -18,9 +18,10 @@
       <section class="hero is-primary">
         <div class="hero-body">
             <div class="container">
-                <h1 class="title">
+              <h1>Welcome to the weather app</h1>
+                <h3 class="title">
                     What's the weather like?
-                </h1>
+                </h3>
             </div>
         </div>
     </section>
@@ -54,38 +55,49 @@
             <div class="columns">
                 <div class="column is-offset-4 is-4">
 <!-- ************-->
-<div class="box">
-  <article class="media">
-      <div class="media-left">
-          <figure class="image is-50x50">
-              <img src="http://openweathermap.org/img/w/{{ new_data.icon }}.png" alt="Image">
-          </figure>
-      </div>
-      <div class="media-content">
-          <div class="content">
-              <p>
-                  <span class="title">{{ new_data.city }}</span>
-                  <br>
-                  <span class="subtitle">{{ new_data.temperature|round }}° C </span>
-                  <br> {{ new_data.description }}
-                  <br> {{ new_data.High |round}}
-                  <br> {{ new_data.Low |round}}
-                  <br> {{ new_data.humidity }}
-                  <br> {{ new_data.feels_like |round }}
-                  <br> {{ new_data.wind_speed }}
-                  <br> {{ new_data.pressure }}
+                 <div class="box">
+                   <article class="media">
+                    <div class="media-left">
+                     <figure class="image is-50x50">
+                      <img src="http://openweathermap.org/img/w/{{ new_data.icon }}.png" alt="Image">
+                    </figure>
+                    </div>
+                    <div class="media-content">
+                     <div class="content">
+                     <p>
+                     <span class="title">{{ new_data.city }}</span>
+                     <br>
+                     <span class="subtitle">{{ new_data.temperature|round }}° C </span>
+                     <br> {{ new_data.description }}
+                     <br> {{ new_data.High |round}}
+                     <br> {{ new_data.Low |round}}
+                     <br> {{ new_data.humidity }}
+                     <br> {{ new_data.feels_like |round }}
+                     <br> {{ new_data.wind_speed }}
+                     <br> {{ new_data.pressure }}
 
-              </p>
-          </div>
-      </div>
-  </article>
-</div>
+                     </p>
+                    </div>
+                  </div>
+                  </article>
+               </div>
+              </div>
+            </div>
+        </div>
+    </section>
 <!-- ************-->
 
-
-
-
-                  <h1>Earlier Search Result</h1>
+<section class="hero is-primary">
+  <div class="hero-body">
+      <div class="container">
+        <h3 class="title">Earlier search results</h3>
+      </div>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+      <div class="columns">
+          <div class="column is-offset-4 is-4">
                   {% for weather in weather_data[:-1] %}
                     <div class="box">
                         <article class="media">

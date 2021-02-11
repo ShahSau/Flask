@@ -68,8 +68,25 @@ def index_post():
                 db.session.commit()
             else:
                 err_msg = 'City does not exist in the world!'
+                return render_template("404.html")
         else:
-            err_msg = 'City already exists in the database!'
+            r1 = get_weather_data(existing_city.name)
+            print(r1)
+            k=[]
+            weather = {
+                'city': existing_city.name,
+                'temperature': r1['main']['temp'],
+                'feels_like': r1['main']['feels_like'],
+                'High': r1['main']['temp_max'],
+                'pressure': r1['main']['pressure'],
+                'Low': r1['main']['temp_min'],
+                'description': r1['weather'][0]['description'],
+                'humidity': r1['main']['humidity'],
+                'wind_speed': r1['wind']['speed'],
+                'icon': r1['weather'][0]['icon'],
+            }
+            k.append(weather)
+            return render_template('one_city.html', weather=k[0])
             
 
 
