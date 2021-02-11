@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <link rel="stylesheet" href="static/style.css" />
+
+  <!-- font awesome icons -->
+  {{ fontawesome_css() }}
+     <!--<link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />-->
+    <title>Hotel Reservation form</title>
+  </head>
+  <body>
+    <div class="container">
+      <img src="../static/logo.png" alt="Hotal logo" class="logo" />
+      <!--todo-->
+      <h1 style="color: #F14C2E">Welcome to our Online booking</h1>
+      <h2>Reservation Details</h2>
+      <form action="/submit" method="POST">
+        <div class="form-group">
+          <h3>Customer Name</h3>
+          <input type="text" name="customer" placeholder="Name of the guest" class="input-lastname"/>
+        </div>
+        <div class="form-group">
+          <h3>Email</h3>
+          <input type="text" name="email" placeholder="exmp@exmp.com" class="input-lastname"/>
+        </div>
+        <div class="form-group">
+          <h3>Room Preference</h3>
+          <select name="room">
+            <option value="">Select Room</option>
+            <option value="Single">Single</option>
+            <option value="Double">Double</option>
+            <option value="King">King</option>
+            <option value="Twin">Twin</option>
+            <option value="Family">Family</option>
+            <option value="Delux">Delux</option>
+            <option value="Studio">Studio</option>
+
+          </select>
+        </div>
+
+        <div class="form-group">
+          <h3>Special Requirments</h3>
+          <textarea
+            name="comments"
+            id=""
+            cols="30"
+            rows="10"
+            placeholder="Tell us how can we be of assistance "
+            class="input-lastname"
+          ></textarea>
+        </div>
+        <input type="submit" value="Submit" class="btn" />
+      </form>
+    </div>
+
+
+    <div class="section-title section-title-left"></div>
+    <h1 class="section-title__name bell-fonts">or contact us for booking</h1>
+    <div class="section-title__underline"></div>
+  </div>
+
+  
+    <div class="contact-container">
+     <!-- <div>
+      <iframe class="contact-map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d57903.1660457389!2d91.82596231128802!3d24.899759462913533!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x375054d3d270329f%3A0xf58ef93431f67382!2sSylhet%2C+Bangladesh!5e0!3m2!1sen!2sfi!4v1563446204707!5m2!1sen!2sfi"
+        width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+      </div>
+      <div>-->
+      <div class="contact-info">
+  
+        <div class="contact-item">
+          <div class="contact-item__icon">
+            <i class="fas fa-map-pin"></i>
+          </div>
+          <h2 class="contact-item__title">Address</h2>
+          <p class="contact-item__text">Lorem Ipsum Sit Amet</p>
+          <p class="contact-item__text">Dummy Pin, Dummy place</p>
+        </div>
+        
+  
+        <div class="contact-item">
+          <div class="contact-item__icon">
+            <i class="fas fa-headphones-alt"></i>
+          </div>
+          <h2 class="contact-item__title">Support</h2>
+          <p class="contact-item__text"> <span><i class="fas fa-phone"></i></span> 1-800-123-4567 </p>
+          <p class="contact-item__text"> <span><i class="fas fa-envelope"></i></span> info@dummy.com </p>
+        </div>
+  
+        <div class="contact-item">
+          <div class="contact-item__icon">
+            <i class="fas fa-clock"></i>
+          </div>
+          <h2 class="contact-item__title">Happy Hours</h2>
+          <p class="contact-item__text">monday - thursday 11.00am - 9.00pm</p>
+          <p class="contact-item__text">Friday - Saturday 9.00am - 2.00am</p>
+          <p class="contact-item__text">Sunday 10.00am - 7.00pm</p>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-item__icon">
+            <i class="fas fa-comment-alt"></i>
+          </div>
+          <h2 class="contact-item__title">Social Media</h2>
+          <p class="contact-item__text"> <span><i class="fab fas-facebook-f"></i></span> @hotelAwesome </p>
+        </div>
+
+      </div>
+      </div>
+  </div>
+  {{ fontawesome_js() }}
+  </body>
+</html>

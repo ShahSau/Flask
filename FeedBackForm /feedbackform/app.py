@@ -1,7 +1,9 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request,url_for
+from flask_fontawesome import FontAwesome
 
 
 app = Flask(__name__,template_folder='../templates',static_folder='../static')
+fa = FontAwesome(app)
 
 @app.route('/')
 def index():
@@ -19,4 +21,3 @@ def submit():
 if __name__ == '__main__':
     app.debug = True
     app.run()
-    
