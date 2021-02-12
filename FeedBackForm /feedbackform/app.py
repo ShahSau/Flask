@@ -1,11 +1,12 @@
 from flask import Flask, render_template, request,url_for
 from flask_fontawesome import FontAwesome
 from flask_sqlalchemy import SQLAlchemy
+from send_mail import send_mail
 
 
 app = Flask(__name__)
 
-ENV = 'dev'
+ENV = 'prod'
 
 if ENV=='dev':
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///booking.db'
@@ -14,7 +15,7 @@ if ENV=='dev':
     app.debug=True
 else:
     app.debug = False
-    app.config['SQLALCHEMY_DATABASE_URI'] = ''
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://nscydfbodxltsh:01e25590a859e4eb520fff7e70bfa01ddfa0a1c935b153d9b8947de56dec9180@ec2-52-4-171-132.compute-1.amazonaws.com:5432/dal35c5nqcmurs'
 
 fa = FontAwesome(app)
 db = SQLAlchemy(app)
@@ -64,6 +65,7 @@ def submit():
             data = Feedback(customer, email, guest, room, arrival, departure, comments)
             db.session.add(data)
             db.session.commit()
+            send_mail(customer, email, guest, room, arrival, departure, comments)
             return render_template('success.html')
         return render_template('index.html', message= 'You have already reserved room at our hotel')
 
