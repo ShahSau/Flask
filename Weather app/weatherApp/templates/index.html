@@ -50,10 +50,10 @@
         </div>
       </section>
 
-    <section class="section">
-        <div class="container">
-            <div class="columns">
-                <div class="column is-offset-4 is-4">
+   <section class="section">
+       <!-- <div class="container">
+             <div class="columns">
+                <div class="column is-offset-4 is-4"> -->
 <!-- ************-->
 <div class="card" >
   <img class="card-img-top" src="http://openweathermap.org/img/w/{{ new_data.icon }}.png" alt="Image">
@@ -72,9 +72,9 @@
       <li class="list-group-item">Pressure: {{ new_data.pressure }}hPa</li>
     </ul>
 </div>
-          </div>
+       <!--   </div>
             </div>
-        </div>
+        </div>-->
     </section>
 <!-- ************-->
 
@@ -86,31 +86,31 @@
   </div>
 </section>
 <section class="section">
-  <div class="container">
+ <!-- <div class="container">
       <div class="columns">
-          <div class="column is-offset-4 is-4">
+          <div class="column is-offset-4 is-4">-->
                   {% for weather in weather_data[:-1] %}
                   <div class="card" >
                     <img class="card-img-top" src="http://openweathermap.org/img/w/{{ weather.icon }}.png" alt="Image">
                     <div class="card-body">
                         <h3 class="card-title">{{ weather.city }}</h3>
-                        <h5 class="card-subtitle">{{ weather.temperature }}°C</h5>
+                        <h5 class="card-subtitle">{{ weather.temperature | round(1, 'common')}}°C</h5>
                         <p class="card-text">{{ weather.description }}</p>
-                        <a class="card-link">H: {{ weather.High }}</a>
-                        <a class="card-link">L: {{ weather.Low }}</a>
+                        <a class="card-link">H: {{ weather.High | round(1, 'common')}}</a>
+                        <a class="card-link">L: {{ weather.Low | round(1, 'common')}}</a>
                     </div>
                  
                       <ul class="list-group list-group-flush">
                         <li class="list-group-item">Humidity is: {{ weather.humidity }}% </li>
-                        <li class="list-group-item">Feels like: {{ weather.feels_like }}°C</li>
+                        <li class="list-group-item">Feels like: {{ weather.feels_like | round(1, 'common')}}°C</li>
                         <li class="list-group-item">Wind speed: {{ weather.wind_speed }}m/s</li>
                         <li class="list-group-item">Pressure: {{ weather.pressure }}hPa</li>
                       </ul>
                 </div>
                   {% endfor %}
-                </div>
+               <!-- </div>
             </div>
-        </div>
+        </div>-->
     </section>
   </body>
 </html>

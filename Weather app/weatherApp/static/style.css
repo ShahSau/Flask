@@ -2684,7 +2684,7 @@
   
   .content ul {
     list-style: disc outside;
-    margin-left: 2em;
+    margin-left: 0;
     margin-top: 1em;
   }
   
@@ -10787,7 +10787,7 @@ body {
   line-height: 1.5;
   color: #212529;
   text-align: left;
-  background-color: #fff;
+  background-color: #F5F5F5;
 }
 
 [tabindex="-1"]:focus {
@@ -15291,7 +15291,8 @@ input[type="button"].btn-block {
   background-clip: border-box;
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 0.25rem;
-  margin-bottom: 1rem;
+  margin-bottom: 3rem;
+  padding: 1rem;
 }
 
 .card > hr {
@@ -16081,9 +16082,9 @@ a.badge-dark:focus, a.badge-dark.focus {
 .list-group-item {
   position: relative;
   display: block;
-  padding: 0.75rem 1.25rem;
+  padding: 0.75rem 2.5rem;
   margin-bottom: -1px;
-  background-color: #fff;
+  background-color: #F5F5F5;
   border: 1px solid rgba(0, 0, 0, 0.125);
 }
 
