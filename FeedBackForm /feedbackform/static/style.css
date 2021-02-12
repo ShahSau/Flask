@@ -47,7 +47,15 @@ img {
 .form-group {
 	margin: 1rem 0;
 }
-
+input[type='text']{
+	display: block;
+	width: 100%;
+	padding: 0.4rem;
+	font-size: 1.2rem;
+	border: 1px solid #ccc;
+	color:#F14C2E;
+	background-color:#212529;
+}
 input[type='text'],
 select,
 textarea {
