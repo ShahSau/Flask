@@ -6,16 +6,16 @@ from send_mail import send_mail
 
 app = Flask(__name__)
 
-ENV = 'prod'
+ENV = 'env'
 
-if ENV=='dev':
+if ENV=='env':
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///booking.db'
  
     app.config['SECRET_KEY'] = 'thisisasecret'
     app.debug=True
 else:
     app.debug = False
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://nscydfbodxltsh:01e25590a859e4eb520fff7e70bfa01ddfa0a1c935b153d9b8947de56dec9180@ec2-52-4-171-132.compute-1.amazonaws.com:5432/dal35c5nqcmurs'
+    app.config['SQLALCHEMY_DATABASE_URI'] = ''
 
 fa = FontAwesome(app)
 db = SQLAlchemy(app)
