@@ -83,14 +83,13 @@ def login():
     if request.method == 'POST':
         username = request.form['username']
         password_candided = request.form['password']
-        #if Users.query.filter(username == username).count() != 0:
-        data = Users.query.filter_by(username=username).first()
-        #password = data['password']
-        print(data)
-       # if sha256_crypt.verify(password_candided, password):
-        #    print('PASSWORD MATCHED')
-       # else:
-        #    print('PASSWORD NOt MATCHED')
+
+        data = Users.query.filter_by(username = username).first()
+        password = data.password
+        if sha256_crypt.verify(password_candided, password):
+            print('PASSWORD MATCHED')
+        else:
+            print('PASSWORD NOt MATCHED')
     return render_template('login.html')
 
 
