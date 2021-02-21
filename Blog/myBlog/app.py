@@ -5,10 +5,9 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 from passlib.hash import sha256_crypt
 from functools import wraps
-from flask_ckeditor import CKEditor
+
 
 app = Flask(__name__)
-ckeditor = CKEditor(app)
 app.debug = True
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db_app.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -100,7 +99,7 @@ def register():
         db.session.add(new_user)
         db.session.commit()
         flash('You are now registered and please login', 'success')
-        redirect(url_for('login'))
+        return redirect(url_for('login'))
 
     return render_template('register.html', form = form)
 
@@ -179,7 +178,7 @@ def add_article():
         db.session.add(new_article)
         db.session.commit()
         flash('Article created', 'success')
-        redirect(url_for('dashboard'))
+        return redirect(url_for('dashboard'))
     return render_template('add_article.html', form =form)
 
 
@@ -187,30 +186,43 @@ def add_article():
 @app.route('/edit_article/<string:id>', methods=['GET', 'POST'])
 @is_logged_in
 def edit_article(id):
-    edit_fetchedarticle= Articles.query.filter_by(id = id).first()
+    edit_fetchedarticle= Articles.query.get_or_404(id)
     #print(edit_fetchedarticle.title)
     
     #get the form
     form = ArticleForm(request.form)
 
     #old data
-    form.title.data= edit_fetchedarticle.title 
+    form.title.data= edit_fetchedarticle.title
     form.subtitle.data= edit_fetchedarticle.subtitle
     form.body.data = edit_fetchedarticle.body
 
     if request.method == 'POST' and form.validate():
-        edit_fetchedarticle.title = form.title.data,
-        edit_fetchedarticle.subtitle = form.subtitle.data,
-        edit_fetchedarticle.author = session['username'],########
-        edit_fetchedarticle.body = form.body.data,
-        edit_fetchedarticle.create_date = datetime.now()
+        title =  request.form['title'],
+        subtitle=  request.form['subtitle'],
+        #edit_fetchedarticle.author= session['username'],########
+        body=  request.form['body'],
+       # edit_fetchedarticle.create_date = datetime.now()
         #)
-        #db.session.query(Articles).update(title = title, subtitle=subtitle,author=author,body=body,create_date=create_date)
+        edit_fetchedarticle.title=title[0]
+        edit_fetchedarticle.subtitle=subtitle[0]
+        edit_fetchedarticle.body=body[0]
+        
         db.session.commit()
         flash('Article updated', 'success')
-        redirect(url_for('dashboard'))
+        return redirect(url_for('dashboard'))
     return render_template('edit_article.html',form=form)
 
+#delet article
+@app.route('/delete_article/<string:id>', methods=['POST'])
+@is_logged_in
+def delete_article(id):
+    delete_fetchedarticle= Articles.query.filter_by(id=id).first()
+    print(delete_fetchedarticle.title)
+    db.session.delete(delete_fetchedarticle)
+    db.session.commit()
+    flash('Successfully deleted the article', 'success')
+    return redirect(url_for('dashboard'))
 
 
 if __name__ == '__main__':
