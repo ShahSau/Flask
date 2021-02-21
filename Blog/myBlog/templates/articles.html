@@ -1,16 +1,27 @@
 {% extends 'layout.html' %}
 
-<!--{% block body %}-->
- <!--<h1>Articles</h1>
+{% block body %}
+ <h1>Articles</h1>
  <ul class='list-group'>
     {% for article in articles %}
-    <li class='list-group-item'><a href="article/{{article.id}}"> {{article.title}}</a></li>
+   <!--<li class='list-group-item'><a href="article/{{article.id}}"> {{article.title}}</a></li>--> 
+   <div class='post-preview'>
+      <a href="article/{{article.id}}">
+         <h2 class='post-title'>
+            {{article.title}}
+         </h2>
+         <h3 class='post-subtitle'>
+            {{ article.subtitle }}
+         </h3>
+      </a>
+      <p class="post-meta">Posted by {{ article.author }} on {{ article.create_date.strftime('%B %d, %Y') }}</p>
+   </div>
 
  {% endfor %}
 </ul>
 
-{% endblock %} -->
-
+{% endblock %} 
+<!--
 <div class="container">
    <h1>Articles</h1>
    <div class="row">
@@ -32,3 +43,4 @@
      </div>
    </div>
  </div>
+-->

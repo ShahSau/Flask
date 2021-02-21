@@ -110,10 +110,10 @@ def login():
     if request.method == 'POST':
         username = request.form['username']
         password_candided = request.form['password']
-        if Users.query.filter_by(username = username).count !=0:
-
+        if Users.query.filter_by(username = username).count() != 0:
             data = Users.query.filter_by(username = username).first()
-            password = data.password
+            password = data.password   
+                 ###############
             if sha256_crypt.verify(password_candided, password):
                 #passed 
                 session['logged_in'] = True
@@ -122,9 +122,11 @@ def login():
                 flash('You are now logged in', 'success')
                 return redirect(url_for('dashboard'))
             else:
-                return render_template('login.html',errors=['Invalid login'])
+                flash('Invalid login', 'danger')
+                return render_template('login.html')
         else:
-            return render_template('login.html',errors=['Username not found'])
+            flash('Username not found','danger' )
+            return render_template('login.html')
     return render_template('login.html')
 
 #check if user is logged in
