@@ -13,7 +13,16 @@
         {% include 'includes/_messages.html' %}
     {% block body %} {% endblock %}
     </div>
-
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div style="text-align:center">
+            <style>.heart{color:#e25555}</style>
+            Made with <span class="heart">❤</span> in Helsinki
+          </div>
+        </div>
+      </div>
+    </footer>
   <script src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
   <script src="//cdn.ckeditor.com/4.6.2/basic/ckeditor.js"></script>
   <script type="text/javascript">
