@@ -193,19 +193,19 @@ def edit_article(id):
     #get the form
     form = ArticleForm(request.form)
 
-    #populate the article
-    #request.form.title= edit_fetchedarticle.title 
-    #request.form.subtitle= edit_fetchedarticle.subtitle
-    #request.form.body = edit_fetchedarticle.body
+    #old data
+    form.title.data= edit_fetchedarticle.title 
+    form.subtitle.data= edit_fetchedarticle.subtitle
+    form.body.data = edit_fetchedarticle.body
 
     if request.method == 'POST' and form.validate():
-        edit_fetchedarticle.title = request.form['title'],
-        edit_fetchedarticle.subtitle = request.form['subtitle'],
+        edit_fetchedarticle.title = form.title.data,
+        edit_fetchedarticle.subtitle = form.subtitle.data,
         edit_fetchedarticle.author = session['username'],########
-        edit_fetchedarticle.body = request.form['body'],
+        edit_fetchedarticle.body = form.body.data,
         edit_fetchedarticle.create_date = datetime.now()
         #)
-        db.session.update(new_article)
+        #db.session.query(Articles).update(title = title, subtitle=subtitle,author=author,body=body,create_date=create_date)
         db.session.commit()
         flash('Article updated', 'success')
         redirect(url_for('dashboard'))
