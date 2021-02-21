@@ -163,7 +163,7 @@ class ArticleForm(Form):
     subtitle = StringField('Subtitle', [validators.Length(min=5,max=250)])
     body= TextAreaField('Body', [validators.Length(min=30)])
 
-#article
+#add article
 @app.route('/add_article', methods=['GET', 'POST'])
 @is_logged_in
 def add_article():
@@ -181,5 +181,37 @@ def add_article():
         flash('Article created', 'success')
         redirect(url_for('dashboard'))
     return render_template('add_article.html', form =form)
+
+
+#edit article
+@app.route('/edit_article/<string:id>', methods=['GET', 'POST'])
+@is_logged_in
+def edit_article(id):
+    edit_fetchedarticle= Articles.query.filter_by(id = id).first()
+    #print(edit_fetchedarticle.title)
+    
+    #get the form
+    form = ArticleForm(request.form)
+
+    #populate the article
+    #request.form.title= edit_fetchedarticle.title 
+    #request.form.subtitle= edit_fetchedarticle.subtitle
+    #request.form.body = edit_fetchedarticle.body
+
+    if request.method == 'POST' and form.validate():
+        edit_fetchedarticle.title = request.form['title'],
+        edit_fetchedarticle.subtitle = request.form['subtitle'],
+        edit_fetchedarticle.author = session['username'],########
+        edit_fetchedarticle.body = request.form['body'],
+        edit_fetchedarticle.create_date = datetime.now()
+        #)
+        db.session.update(new_article)
+        db.session.commit()
+        flash('Article updated', 'success')
+        redirect(url_for('dashboard'))
+    return render_template('edit_article.html',form=form)
+
+
+
 if __name__ == '__main__':
     app.run()
