@@ -1,7 +1,9 @@
-from flask import Flask, render_template, url_for, flash, redirect
-from forms import RegistrationForm, LoginForm
-app = Flask(__name__)
-app.config['SECRET_KEY'] = '2009088dd19a730694a7ca00309b03bb'
+from flask import render_template, url_for, flash, redirect
+from flaskblog import app, db, bcrypt
+from flaskblog.forms import RegistrationForm, LoginForm
+from flaskblog.models import User, Post
+
+
 
 
 posts =[
@@ -33,6 +35,8 @@ def register():
     form = RegistrationForm()
     if form.validate_on_submit():
         flash(f'Account created for {form.username.data}!','success')
+        hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+        #####
         return redirect(url_for('home'))
     return render_template('register.html', title="Register", form=form)
 
@@ -46,7 +50,3 @@ def login():
         else:
             flash("Login unsuccessful, please check username and password", 'danger')
     return render_template('login.html', title="Login", form=form)
-
-
-if __name__ == '__main__':
-    app.run(debug=True)
